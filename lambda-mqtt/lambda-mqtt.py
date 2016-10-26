@@ -35,13 +35,8 @@ def setup_env():
   populate_env()
 
 def verify_appid(appid=None):
-  if env('SKILL_APPID') and appid:
-    try:
-      print ("Verifying application ID...")
-      verifier.verify_application_id(appid, env('SKILL_APPID'))
-    except verifier.VerificationError as e:
-      print (e.args[0])
-      raise
+  if appid != env('SKILL_APPID'):
+    raise ValueError("Invalid Application ID")
 
 def on_message(client, userdata, msg):
   global response
