@@ -47,7 +47,7 @@ def on_message(client, userdata, msg):
   global response
   response = msg.payload
   if response['response']['shouldEndSession']:
-  client.disconnect()
+    client.disconnect()
 
 def on_session_started(session_started_request, session):
   print("on_session_started: requestId=" + session_started_request['requestId'] + ", sessionId=" + session['sessionId'])
