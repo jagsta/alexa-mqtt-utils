@@ -1,2 +1,3 @@
 .env
 IBM-Bluemix-CA-Chain.pem
+lambda-mqtt-*
