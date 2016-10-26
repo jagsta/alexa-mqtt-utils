@@ -41,7 +41,7 @@ def verify_appid(appid=None):
 def on_message(client, userdata, msg):
   global response
   response = msg.payload
-  print("response received: " +json.loads(response))
+  print("response received: " +str(json.loads(response)))
   client.disconnect()
 
 def on_session_started(session_started_request, session):
