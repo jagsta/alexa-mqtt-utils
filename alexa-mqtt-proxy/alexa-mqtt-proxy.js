@@ -30,6 +30,7 @@ var request = require('request');
 
 var startup = nconf.argv();
 var configFile = path.resolve( startup.get('conf') || '/usr/local/etc/alexa-mqtt-proxy.json' );
+var logName = startup.get('log-as') || 'alexa-mqtt-proxy.js';
 startup.remove('argv');
 startup = null;
 
@@ -51,7 +52,7 @@ nconf.defaults({
 })
 
 var syslogMsg ="";
-posix.openlog(path.basename(process.argv[1]), { cons: false, ndelay:true, pid:true }, 'local0');
+posix.openlog(logName, { cons: false, ndelay:true, pid:true }, 'local0');
   
 
 if (nconf.get('secure') == 'true') { 
