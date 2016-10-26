@@ -14,7 +14,7 @@ It will verify the request is from the Alexa application you expect, and post th
 It will listen to another MQTT message queue for a response, and pass this back to Alexa
 
 # alexa-mqtt-proxy
-is a node.js script which you run as a service in your local network. It can connect to the same MQTT message queues
+is a node.js script which you run as a service on your local network. It can connect to the same MQTT message queues
 you configured lambda-mqtt to use. 
 When lambda-mqtt publishes an Alexa JSON request, it will read this from the message queue and proxy it to an HTTP listener as the body of a POST request. 
 When the response is received from the HTTP listener it will publish this message on the queue specified, allowing lambda-mqtt to return this to Alexa.
