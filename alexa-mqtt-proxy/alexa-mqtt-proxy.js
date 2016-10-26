@@ -20,15 +20,20 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-
+const path = require('path');
 var posix = require('posix');
 var argv = require('yargs').argv;
 var http = require('http');
-var fs    = require('fs'),
-    nconf = require('nconf');
+var fs    = require('fs');
+var nconf = require('nconf');
 var request = require('request');
 
-nconf.argv().file({ file: '/usr/local/etc/alexa-mqtt-proxy.json' })
+var startup = nconf.argv();
+var configFile = path.resolve( startup.get('conf') || '/usr/local/etc/alexa-mqtt-proxy.json' );
+startup.remove('argv');
+startup = null;
+
+nconf.argv().file({ file: configFile })
 nconf.defaults({
   "secure":"true",
   "user":"mqttuser",
@@ -46,7 +51,7 @@ nconf.defaults({
 })
 
 var syslogMsg ="";
-posix.openlog('alexa-mqtt-proxy.js', { cons: false, ndelay:true, pid:true }, 'local0');
+posix.openlog(path.basename(process.argv[1]), { cons: false, ndelay:true, pid:true }, 'local0');
   
 
 if (nconf.get('secure') == 'true') { 
