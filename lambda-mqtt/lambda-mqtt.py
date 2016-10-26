@@ -41,8 +41,8 @@ def verify_appid(appid=None):
 def on_message(client, userdata, msg):
   global response
   response = msg.payload
-  if response['response']['shouldEndSession']:
-    client.disconnect()
+  print("response received: " +json.loads(response))
+  client.disconnect()
 
 def on_session_started(session_started_request, session):
   print("on_session_started: requestId=" + session_started_request['requestId'] + ", sessionId=" + session['sessionId'])
@@ -75,5 +75,6 @@ def lambda_handler(event, context):
   client.connect(MQTT, PORT, 60)
   client.subscribe(SUB, qos=0)
   client.publish(PUB, json.dumps(event))
+  print("published event, waiting on response")
   client.loop_forever()
   return json.loads(response)
