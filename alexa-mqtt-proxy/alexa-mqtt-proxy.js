@@ -62,7 +62,7 @@ else {
   var connectstring = 'mqtt://';
 }
 
-connectstring = connectstring + nconf.get('user') + ':' + nconf.get('pass') + '@' + nconf.get('host') + ':' + nconf.get('port') + '?clientId=' + nconf.get('cid')
+connectstring = connectstring + nconf.get('user') + ':' + nconf.get('pass') + '@' + nconf.get('host') + ':' + nconf.get('port') + '?clientId=' + nconf.get('cid');
 
 var mqtt = require('mqtt');
 var client = mqtt.connect(connectstring);
