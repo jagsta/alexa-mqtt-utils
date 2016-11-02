@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-const path = require('path');
+var path = require('path');
 var posix = require('posix');
 var argv = require('yargs').argv;
 var http = require('http');
